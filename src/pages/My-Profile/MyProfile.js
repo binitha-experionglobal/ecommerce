@@ -72,11 +72,10 @@ function MyProfile() {
   };
   const handleCancelled = () => {
     console.log("Clicked cancel button");
-    setRefresh(refresh+1);
+    setRefresh(refresh + 1);
     setIsModalVisible(false);
   };
 
-  
   //display profile details
   useEffect(() => {
     instance
@@ -130,8 +129,8 @@ function MyProfile() {
         message.error("Server Error. Please try again later");
       });
   };
-  
-//formik---check later
+
+  //formik---check later
   const formik = useFormik({
     initialValues: {
       oldPassword: "",
@@ -431,13 +430,15 @@ function MyProfile() {
                 <Option value="other">Other</Option>
               </Select>
             </Form.Item>
-<br/>
+            <br />
             <Form.Item>
-                <Button type="primary" htmlType="submit"
+              <Button
+                type="primary"
+                htmlType="submit"
                 className="button-form-update"
-                >
-                  Update
-                </Button>
+              >
+                Update
+              </Button>
             </Form.Item>
           </Form>
         </div>

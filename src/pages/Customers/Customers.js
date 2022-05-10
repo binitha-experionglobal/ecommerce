@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import HeaderBstore from "../../components/HeaderBstore";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import instance from "../../components/Axios-Instance";
-import axios from "axios";
+import "../Customers/customers.css"
 import {
   RiCheckLine,
   RiDeleteBin6Line,
@@ -15,7 +15,7 @@ import { FcSearch } from "react-icons/fc";
 import {
   Card,
   Select,
-  Result,
+  Modal,
   Space,
   Table,
   Input,
@@ -63,16 +63,20 @@ const EditableCell = ({
 function Customers() {
   const [allData, setAllData] = useState(null);
   const [filteredData, setFilteredData] = useState(allData);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
+  const[modalForm]=Form.useForm();
   const [editingKey, setEditingKey] = useState("");
   const [refresh, setRefresh] = useState(0);
+
   const onFinish = (values) => {
+    
     console.log(JSON.stringify(values));
     instance
       .post("create-customer.php", JSON.stringify(values))
       .then((response) => {
         if (response.data.message === "User was created.") {
-          message.success(response.data.message);
+          message.success("Customer account created");
           form.resetFields();
           setRefresh(refresh + 1);
         } else {
@@ -80,14 +84,20 @@ function Customers() {
         }
       });
   };
-  const onFinishFailed = () => {
-    message.error("Submit failed!");
-  };
+ 
 
   const onReset = () => {
-    form.resetFields();
+    modalForm.resetFields();
   };
-
+  const handleCancelled = () => {
+    console.log("Clicked cancel button");
+    setRefresh(refresh + 1);
+    console.log(refresh);
+    setIsModalVisible(false);
+  };
+  const showModals = () => {
+    setIsModalVisible(true);
+  };
   const handleSearch = (event) => {
     let value = event.target.value;
     let result = [];
@@ -295,105 +305,160 @@ function Customers() {
           <div className="row">
             <div className="col-6">
               <h1 className="headerheading ">
-
-                
-
-
-
-
-                <Popup
-                  trigger={<Button className="button"> Add Customer </Button>}
-                  modal
-                  nested
+                <Button className="button" onClick={showModals}>
+                  {" "}
+                  Add Customer{" "}
+                </Button>
+               
+              
+                <Modal
+                  title="Create Customer Account"
+                  footer={null}
+                  visible={isModalVisible}
+                  onSubmit={onFinish}
+                  onCancel={handleCancelled}
                 >
-                  {(close) => (
-                    <div className="modal">
-                      <button className="close" onClick={close}>
-                        &times;
-                      </button>
-                      <Card title=" Add Customer" className="card">
-                        <Form
-                          form={form}
-                          layout="vertical"
-                          onFinish={onFinish}
-                          onFinishFailed={onFinishFailed}
-                          autoComplete="off"
-                        >
-                          <Form.Item
-                            label="Name"
-                            name="customerName"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input Customer Name",
-                              },
-                              {
-                                type: "string",
-                                min: 3,
-                                message: "Please input valid values ",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="eg. John Doe" />
-                          </Form.Item>
-                          <Form.Item
-                            label="Email"
-                            name="email"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input Customer E-mail",
-                              },
-                              {
-                                type: "email",
-                                message: "The input is not valid E-mail!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="eg. john@gmail.com" />
-                          </Form.Item>
-                          <Form.Item label="Phone Number" name="phoneNumber">
-                            <Input placeholder="eg. 98986xxxx" />
-                          </Form.Item>
-                          <Form.Item label="Address" name="address">
-                            <Input placeholder="eg. abc house, Netherlands" />
-                          </Form.Item>
-                          <Form.Item name="gender" label="Gender">
-                            <Select placeholder="select your gender">
-                              <Option value="male">Male</Option>
-                              <Option value="female">Female</Option>
-                              <Option value="other">Other</Option>
-                            </Select>
-                          </Form.Item>
-                          <Form.Item
-                            name="password"
-                            label="Password"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input your password!",
-                              },
-                            ]}
-                            hasFeedback
-                          >
-                            <Input.Password />
-                          </Form.Item>
-                          <Form.Item>
-                            <Space>
-                              <Button type="primary" htmlType="submit">
-                                Submit
-                              </Button>
-                              <Button htmlType="button" onClick={onReset}>
-                                Reset
-                              </Button>
-                            </Space>
-                          </Form.Item>
-                        </Form>
-                      </Card>
-                      <div className="actions"></div>
-                    </div>
-                  )}
-                </Popup>
+                  <div className="modal-class-form">
+                  <Form
+                    form={modalForm}
+                    layout="vertical"
+                    onFinish={onFinish}
+                    //onFinishFailed={onFinishFailed}
+                    autoComplete="off"
+                  >
+                    <Form.Item
+                      label="Name"
+                      name="customerName"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input Customer Name",
+                        },
+                        {
+                          min: 3,
+                          message: "Too short! ",
+                        },
+                        {
+                          type: "string",
+                          message: "Name is Invalid",
+                        },
+                        {
+                          max: 15,
+                          message: "Too long!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="eg. John Doe" />
+                    </Form.Item>
+                    <Form.Item
+                      label="Email"
+                      name="email"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input Customer E-mail",
+                        },
+                        {
+                          type: "email",
+                          message: "The input is not valid E-mail!",
+                        },
+                        {
+                          max: 50,
+                          message: "Too long!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="eg. john@gmail.com" />
+                    </Form.Item>
+                    <Form.Item
+                      label="Phone Number"
+                      name="phoneNumber"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Phone Number cannot be empty",
+                        },
+                        {
+                          max: 10,
+                          message: "Cannot be more than 10 digits",
+                        },
+                        {
+                          min: 10,
+                          message: "Cannot be less than 10 digits",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="eg. 98986xxxx" />
+                    </Form.Item>
+                    <Form.Item
+                      label="Address"
+                      name="address"
+                      rules={[
+                        {
+                          max: 200,
+                          message: "Too long!",
+                        },
+                        {
+                          min: 5,
+                          message: "Too short!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="eg. abc house, Netherlands" />
+                    </Form.Item>
+                    <Form.Item name="gender" label="Gender">
+                      <Select placeholder="select your gender">
+                        <Option value="male">Male</Option>
+                        <Option value="female">Female</Option>
+                        <Option value="other">Other</Option>
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      name="passwords"
+                      label="Password"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input your password!",
+                        },
+                        {
+                          min: 6,
+                          message: "Too short!",
+                        },
+                        {
+                          max: 15,
+                          message: "Too long!",
+                        },
+                        {
+                          pattern: /[A-Z].*[A-Z]/,
+                          message: "Two Uppercase characters required !",
+                        },
+                        {
+                          pattern: /[a-z].*[a-z]/,
+                          message: "Two Lowercase characters required !",
+                        },
+                        // {
+                        //   pattern:/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{0,2}/,
+                        //   message:"Atmost 2 special characters !"
+                        // }
+                      ]}
+                    >
+                      <Input.Password />
+                    </Form.Item>
+                    <Form.Item>
+                      <br/>
+                      <Space>
+                        <Button type="primary" htmlType="submit " className="submit-form-modal" >
+                          Create Account
+                        </Button>
+                        <Button htmlType="button" onClick={onReset} className="reset-form-modal">
+                          Reset
+                        </Button>
+                      </Space>
+                    </Form.Item>
+                  </Form>
+                  </div>
+                </Modal>
               </h1>
             </div>
             <div className="col-6">

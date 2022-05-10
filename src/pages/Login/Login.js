@@ -56,7 +56,7 @@ function Login() {
             localStorage.setItem("JWT-Token", jwtToken);
             localStorage.setItem("name", user);
             localStorage.setItem("userId", userId);
-
+            localStorage.setItem("isAuthenticated", true);
             navigate("/home");
           } else {
             alert("Invalid Credentials Please try again");

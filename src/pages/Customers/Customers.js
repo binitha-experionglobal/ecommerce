@@ -295,6 +295,12 @@ function Customers() {
           <div className="row">
             <div className="col-6">
               <h1 className="headerheading ">
+
+                
+
+
+
+
                 <Popup
                   trigger={<Button className="button"> Add Customer </Button>}
                   modal

@@ -14,18 +14,33 @@ import Orders from "./pages/Orders/Orders";
 import Users from "./pages/Users/Users";
 import MyProfile from "./pages/My-Profile/MyProfile";
 import Notfound from "./pages/Not-Found/Notfound";
+import Pro from "./pages/My-Profile/pro"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 export default function RouteApp() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="home" element={<Home />} />
-        <Route path="home/categories" element={<Categories />} />
-        <Route path="home/customers" element={<Customers />} />
-        <Route path="home/orders" element={<Orders />} />
-        <Route path="home/users" element={<Users />} />
-        <Route path="home/my-profile" element={<MyProfile/>}/>
+        <Route path="/home" element={<ProtectedRoute />}>
+          <Route exact path="/home" element={<Home />} />
+        </Route>
+        <Route path="/home/categories" element={<ProtectedRoute />}>
+          <Route exact path="/home/categories" element={<Categories />} />
+        </Route>
+        <Route path="/home/customers" element={<ProtectedRoute />}>
+          <Route exact path="/home/customers" element={<Customers />} />
+        </Route>
+        <Route path="/home/orders" element={<ProtectedRoute />}>
+          <Route exact path="/home/orders" element={<Orders />} />
+        </Route>
+        <Route path="/home/users" element={<ProtectedRoute />}>
+          <Route exact path="/home/users" element={<Users />} />
+        </Route>
+        <Route path="/home/my-profile" element={<ProtectedRoute />}>
+          <Route exact path="/home/my-profile" element={<MyProfile/>} />
+        </Route>
+        <Route path="home/pro" element={<Pro/>}/>
         <Route path="*" element={<Notfound />} />
       </Routes>
     </BrowserRouter>

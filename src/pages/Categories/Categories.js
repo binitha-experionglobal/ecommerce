@@ -290,11 +290,17 @@ function Categories() {
                             rules={[
                               {
                                 required: true,
-                                message: "Please input User Name",
+                                message: "Category cannot be empty",
                               },
                               {
-                                required: true,
+                                
                                 min: 3,
+                                message:"Too short"
+                              },
+                              {
+                                
+                                max: 20,
+                                message:"Too long"
                               },
                             ]}
                           >
@@ -306,7 +312,12 @@ function Categories() {
                             rules={[
                               {
                                 required: true,
-                                message: "Please input description",
+                                message: "Description cannot be empty",
+                              },
+                              {
+                                
+                                min: 5,
+                                message:"Too short"
                               },
                             ]}
                           >

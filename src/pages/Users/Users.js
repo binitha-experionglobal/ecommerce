@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import HeaderBstore from "../../components/HeaderBstore";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import instance from "../../components/Axios-Instance";
+import "../Users/users.css"
 import {
   RiCheckLine,
   RiTeamLine,
@@ -12,7 +13,7 @@ import {
 } from "react-icons/ri";
 import { FcSearch } from "react-icons/fc";
 import {
-  Card,
+  Modal,
   Select,
   Result,
   Space,
@@ -62,6 +63,9 @@ const EditableCell = ({
 function Users() {
   const [allData, setAllData] = useState(null);
   const [filteredData, setFilteredData] = useState(allData);
+
+  const[modalForm]=Form.useForm();
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
   const [refresh, setRefresh] = useState(0);
@@ -72,7 +76,7 @@ function Users() {
       .then((response) => {
         if (response.data.message === "User was created.") {
           message.success(response.data.message);
-          form.resetFields();
+          modalForm.resetFields();
           setRefresh(refresh + 1);
         } else {
           message.error(response.data.message);
@@ -86,7 +90,16 @@ function Users() {
   };
 
   const onReset = () => {
-    form.resetFields();
+    modalForm.resetFields();
+  };
+  const showModals = () => {
+    setIsModalVisible(true);
+  };
+  const handleCancelled = () => {
+    console.log("Clicked cancel button");
+    setRefresh(refresh + 1);
+    console.log(refresh);
+    setIsModalVisible(false);
   };
 
   const handleSearch = (event) => {
@@ -283,19 +296,23 @@ function Users() {
           <div className="row">
             <div className="col-6">
               <h1 className="headerheading ">
-                <Popup
-                  trigger={<Button className="button"> Add User </Button>}
-                  modal
-                  nested
+              
+               <Button className="button" onClick={showModals}>
+                  {" "}
+                  Add User{" "}
+                </Button>
+               
+              
+                <Modal
+                  title="Create User Account"
+                  footer={null}
+                  visible={isModalVisible}
+                  onSubmit={onFinish}
+                  onCancel={handleCancelled}
                 >
-                  {(close) => (
-                    <div className="modal">
-                      <button className="close" onClick={close}>
-                        &times;
-                      </button>
-                      <Card title=" Add User" className="card">
+                    <div className="modal-class-form">
                         <Form
-                          form={form}
+                          form={modalForm}
                           layout="vertical"
                           onFinish={onFinish}
                           onFinishFailed={onFinishFailed}
@@ -310,10 +327,18 @@ function Users() {
                                 message: "Please input User Name",
                               },
                               {
-                                type: "string",
                                 min: 3,
-                                message: "Please input valid values ",
+                                message: "Too short! ",
                               },
+                              {
+                                type: "string",
+                                message: "Name is Invalid",
+                              },
+                              {
+                                max: 15,
+                                message: "Too long!",
+                              },
+                              
                             ]}
                           >
                             <Input placeholder="eg. John Doe" />
@@ -330,11 +355,31 @@ function Users() {
                                 type: "email",
                                 message: "The input is not valid E-mail!",
                               },
+                              {
+                                max: 50,
+                                message: "Too long!",
+                              },
                             ]}
                           >
                             <Input placeholder="eg. john@gmail.com" />
                           </Form.Item>
-                          <Form.Item label="Phone Number" name="phoneNumber">
+                          <Form.Item label="Phone Number" 
+                          name="phoneNumber"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Phone Number cannot be empty",
+                            },
+                            {
+                              max: 10,
+                              message: "Cannot be more than 10 digits",
+                            },
+                            {
+                              min: 10,
+                              message: "Cannot be less than 10 digits",
+                            },
+                          ]}
+                          >
                             <Input placeholder="eg. 98986xxxx" />
                           </Form.Item>
                           <Form.Item name="gender" label="Gender">
@@ -352,27 +397,49 @@ function Users() {
                                 required: true,
                                 message: "Please input your password!",
                               },
+                              {
+                                min: 6,
+                                message: "Too short!",
+                              },
+                              {
+                                max: 15,
+                                message: "Too long!",
+                              },
+                              {
+                                pattern: /[A-Z].*[A-Z]/,
+                                message: "Two Uppercase characters required !",
+                              },
+                              {
+                                pattern: /[a-z].*[a-z]/,
+                                message: "Two Lowercase characters required !",
+                              },
+                              // {
+                              //   pattern:/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{0,2}/,
+                              //   message:"Atmost 2 special characters !"
+                              // }
                             ]}
-                            hasFeedback
                           >
                             <Input.Password />
                           </Form.Item>
+                          <br/>
                           <Form.Item>
                             <Space>
+                              <div className="submit-form-modal">
                               <Button type="primary" htmlType="submit">
-                                Submit
+                                Create User Account
                               </Button>
-                              <Button htmlType="button" onClick={onReset}>
+                              </div>
+                              <div className="reset-form-modal">
+                              <Button htmlType="button" onClick={onReset} >
                                 Reset
                               </Button>
+                              </div>
                             </Space>
                           </Form.Item>
                         </Form>
-                      </Card>
-                      <div className="actions"></div>
-                    </div>
-                  )}
-                </Popup>
+                        </div>
+                   </Modal>
+                 
               </h1>
             </div>
             <div className="col-6">

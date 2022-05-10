@@ -1,0 +1,31 @@
+/* .ant-spin-dot-item {
+    background-color: red;
+    color: aliceblue;
+  } */
+ 
+  input[type="submit"] {
+    
+    cursor: pointer;
+    font-size: 15px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient( 90deg, rgba(34, 141, 183, 1) 8%, rgba(26, 147, 194, 1) 95%);
+    /* border: 1px solid #05091b; */
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+   
+}
+
+
+.ant-spin-text { color: rgb(255, 255, 255); }
+.css-1fu7jd5-MuiButtonBase-root-MuiButton-root{
+    background-color: #416c81 !important;
+    color: #ffffff !important;
+    font-size: small !important;
+   
+}
+.css-1fu7jd5-MuiButtonBase-root-MuiButton-root:hover{
+    background-color: rgb(236, 241, 244)!important;
+    color: rgb(2, 9, 15) !important;
+}
+
+

@@ -1,0 +1,95 @@
+.align{
+    padding-left: 210px;
+    padding-top: 80px;
+    
+}
+
+.block1
+{ 
+    height: 150px;
+    width: 270px;
+    /* From https://css.glass */
+    background:rgba(28, 94, 120, 0.587);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.block2
+{
+
+  
+    height: 150px;
+    width: 270px;
+    /* From https://css.glass */
+    background: rgba(28, 94, 120, 0.458);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.block3
+{
+
+  
+    height: 150px;
+    width: 270px;
+    /* From https://css.glass */
+    background: rgba(28, 94, 120, 0.587);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.block-row{
+position: fixed;
+    height: 250px;
+    width: 78%;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.329);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.dashboard-block{
+padding-left: 220px;
+padding-top: 25px;
+
+
+}
+
+.bstore-body{
+    height: 588px;
+    width: 1200px;
+    background-color: rgb(229, 229, 229);
+}
+.cust-count{
+  padding-left: 30px;
+}
+.order-count{
+    padding-left: 15px;
+}
+.users-count{
+    padding-left: 15px;
+}
+.dash-icon{
+    font-size: 50px;
+}
+
+
+

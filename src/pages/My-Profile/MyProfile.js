@@ -8,17 +8,21 @@ import { Formik } from "formik";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AiOutlineUser } from "react-icons/ai";
-import { Modal, Result, Button, Input, message } from "antd";
+import { Modal, Button, Input, message, Select, Space, Form } from "antd";
 import profilepic from "../../assets/images/common_profile_pic.png";
 import { EditTwoTone } from "@ant-design/icons";
 import TextField from "@mui/material/TextField";
 
+const { Option } = Select;
 function MyProfile() {
+  const [form] = Form.useForm();
   const [visible, setVisible] = React.useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [refresh, setRefresh] = useState(0);
   const [data, setData] = useState(0);
+
+  //validations for update password
 
   const Schema = Yup.object().shape({
     oldPassword: Yup.string("Enter your current password")
@@ -52,20 +56,28 @@ function MyProfile() {
       .required("Password is required"),
   });
 
+  //show,cancel modal for update password
   const showModal = () => {
     setVisible(true);
   };
-
-  const showModals = () => {
-    setIsModalVisible(true);
-  };
-
   const handleCancel = () => {
     console.log("Clicked cancel button");
     formik.resetForm();
     setVisible(false);
   };
 
+  //show,canccel for update details
+  const showModals = () => {
+    setIsModalVisible(true);
+  };
+  const handleCancelled = () => {
+    console.log("Clicked cancel button");
+    setRefresh(refresh+1);
+    setIsModalVisible(false);
+  };
+
+  
+  //display profile details
   useEffect(() => {
     instance
       .post("MyProfile/profile-details.php", {
@@ -78,23 +90,28 @@ function MyProfile() {
         setRefresh(refresh + 1);
         console.log(refresh);
         setRefresh(false);
+        form.setFieldsValue({
+          userName: data.userName,
+          email: data.email,
+          gender: data.gender,
+          phoneNumber: data.phoneNumber,
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   }, [refresh]);
 
+  //store details for details update
   const handleSubmits = (e) => {
-    e.preventDefault();
-
     const data2 = {
       userId: localStorage.getItem("userId"),
-      userName: e.target.userName.value,
-      phoneNumber: e.target.phoneNumber.value,
-      email: e.target.email.value,
-      gender: e.target.gender.value,
+      userName: e.userName,
+      phoneNumber: e.phoneNumber,
+      email: e.email,
+      gender: e.gender,
     };
-    console.log("data" + data2);
+    console.log(data2);
 
     instance
       .post("MyProfile/edit-details.php", JSON.stringify(data2))
@@ -113,12 +130,8 @@ function MyProfile() {
         message.error("Server Error. Please try again later");
       });
   };
-  const handleCancelled = () => {
-    console.log("Clicked cancel button");
-    formik.resetForm();
-    setIsModalVisible(false);
-  };
-
+  
+//formik---check later
   const formik = useFormik({
     initialValues: {
       oldPassword: "",
@@ -145,11 +158,9 @@ function MyProfile() {
                 <Button className="button" onClick={showModals}>
                   Edit Details
                 </Button>
-
                 <Button className="button-m" onClick={showModal}>
                   Change Password
                 </Button>
-
                 <Modal
                   title="Change Password"
                   visible={visible}
@@ -177,17 +188,14 @@ function MyProfile() {
                           console.log(response.data.message);
                           if (response.data.message === "Password updated.") {
                             message.success(response.data.message);
-
                             setIsSubmitting(false);
                           } else {
                             message.error(response.data.message);
-
                             setIsSubmitting(false);
                           }
                         })
                         .catch((error) => {
                           message.error("Try again later");
-                          //formik.resetForm()
                           setIsSubmitting(false);
                         });
                     }}
@@ -219,13 +227,11 @@ function MyProfile() {
                               }
                               style={{ width: 350 }}
                             />
-
                             <br />
                             <span className="error" style={{ color: "red" }}>
                               {errors.oldPassword}
                             </span>
                           </div>
-
                           <br />
                           <div className="input-containers">
                             <TextField
@@ -263,7 +269,6 @@ function MyProfile() {
                               }
                               style={{ width: 350 }}
                             />
-
                             <br />
                             <span className="error" style={{ color: "red" }}>
                               {errors.newPassword}
@@ -349,63 +354,92 @@ function MyProfile() {
         onSubmit={handleSubmits}
         onCancel={handleCancelled}
       >
-        <div id="cont-ed">
-          <form
-            onSubmit={handleSubmits}
-            autoComplete="on"
-            className="form-submit"
+        <div class="cont-ed">
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={handleSubmits}
+            autoComplete="off"
           >
-            <TextField
+            <Form.Item
               label="Name"
-              id="userName"
               name="userName"
-              defaultValue={data.userName}
-              color="secondary"
-              helperText="Please enter your name"
-              style={{ width: 350 }}
-            />
-            <br />
-            <br />
-            <TextField
+              id="userName"
+              rules={[
+                {
+                  required: true,
+                  message: "Username cannot be empty",
+                },
+                {
+                  type: "string",
+                  min: 3,
+                  message: "Too short !",
+                },
+                {
+                  type: "string",
+                  max: 15,
+                  message: "Too long !",
+                },
+              ]}
+            >
+              <Input placeholder="eg. John Doe" />
+            </Form.Item>
+            <Form.Item
               label="Email"
-              id="email"
               name="email"
-              defaultValue={data.email}
-              color="secondary"
-              helperText="Please enter your email"
-              style={{ width: 350 }}
-            />
-            <br />
-            <br />
-            <TextField
+              rules={[
+                {
+                  required: true,
+                  message: "Email cannot be empty",
+                },
+                {
+                  type: "email",
+                  message: "The input is not valid E-mail!",
+                },
+                {
+                  max: 50,
+                  message: "Too long!",
+                },
+              ]}
+            >
+              <Input placeholder="eg. john@gmail.com" />
+            </Form.Item>
+            <Form.Item
               label="Phone Number"
-              id="phoneNumber"
               name="phoneNumber"
-              defaultValue={data.phoneNumber}
-              color="secondary"
-              helperText="Please enter your phone number"
-              style={{ width: 350 }}
-            />
-            <br />
-            <br />
-            <TextField
-              label="gender"
-              id="gender"
-              name="gender"
-              defaultValue={data.gender}
-              color="secondary"
-              helperText="Please enter your gender"
-              style={{ width: 350 }}
-            />
-            <br />
-            <br />
-            <input
-              className="submit-button"
-              type="submit"
-              value="Update"
-              style={{ width: 350 }}
-            />
-          </form>
+              rules={[
+                {
+                  required: true,
+                  message: "Phone Number cannot be empty",
+                },
+                {
+                  max: 10,
+                  message: "Cannot be more than 10 digits",
+                },
+                {
+                  min: 10,
+                  message: "Cannot be less than 10 digits",
+                },
+              ]}
+            >
+              <Input placeholder="eg. 98986xxxx" />
+            </Form.Item>
+            <Form.Item name="gender" label="Gender">
+              <Select placeholder="select your gender">
+                <Option value="male">Male</Option>
+                <Option value="female">Female</Option>
+                <Option value="other">Other</Option>
+              </Select>
+            </Form.Item>
+<br/>
+            <Form.Item>
+                <Button type="primary" htmlType="submit"
+                className="button-form-update"
+                >
+                  Update
+                </Button>
+            </Form.Item>
+          </Form>
         </div>
       </Modal>
     </>

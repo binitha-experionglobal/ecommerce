@@ -13,6 +13,8 @@ import profilepic from "../../assets/images/common_profile_pic.png";
 import { EditTwoTone } from "@ant-design/icons";
 import TextField from "@mui/material/TextField";
 
+
+
 const { Option } = Select;
 function MyProfile() {
   const [form] = Form.useForm();
@@ -306,7 +308,8 @@ function MyProfile() {
               <div className="details-form">
                 <div className="row">
                   <div className="col-5">
-                    <img className="profilepic" src={profilepic} />
+                  
+                    <img className="profilepic" src={"../../assets/images/common_profile_pic.png"} />
                   </div>
                   <div className="col-7">
                     <div className="row">

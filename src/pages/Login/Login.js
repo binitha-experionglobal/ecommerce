@@ -13,12 +13,12 @@ const antIcon = <LoadingOutlined style={{ fontSize: 15 }} spin />;
 const validationSchema = yup.object({
   email: yup
     .string("Enter your email")
-    .email("Enter a valid email")
+    .email("Invalid Email")
     .required("Email is required"),
   passwords: yup
     .string("Enter your password")
-    .min(6, "Password should be of minimum 6 characters length")
-    .max(15, "Password should be of maximum 15 characters length")
+    .min(6, "Invalid password")
+    .max(15, "Invalid password")
     .required("Password is required"),
 });
 

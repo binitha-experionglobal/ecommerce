@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import HeaderBstore from "../../components/HeaderBstore";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import instance from "../../components/Axios-Instance";
-import "../Customers/customers.css"
+import "../Customers/customers.css";
+import pic from "../../assets/images/avatar8.jpg"
 import {
   RiCheckLine,
   RiDeleteBin6Line,
@@ -13,7 +14,7 @@ import {
 } from "react-icons/ri";
 import { FcSearch } from "react-icons/fc";
 import {
-  Card,
+  Avatar,
   Select,
   Modal,
   Space,
@@ -27,6 +28,7 @@ import {
   message,
 } from "antd";
 import Popup from "reactjs-popup";
+import { height } from "@mui/system";
 const { Option } = Select;
 const EditableCell = ({
   editing,
@@ -68,6 +70,8 @@ function Customers() {
   const[modalForm]=Form.useForm();
   const [editingKey, setEditingKey] = useState("");
   const [refresh, setRefresh] = useState(0);
+
+  const imagePath="../../assets/images";
 
   const onFinish = (values) => {
     
@@ -163,14 +167,14 @@ function Customers() {
       editable: true,
       defaultSortOrder: "ascend",
       sorter: (a, b) => a.customerId - b.customerId,
-      width: "8%",
+      width: "6%",
     },
     {
       title: "Name",
       dataIndex: "customerName",
       key: "customerName",
       editable: true,
-      width: "13%",
+      width: "10%",
     },
     {
       title: "Email",
@@ -194,7 +198,7 @@ function Customers() {
       dataIndex: "address",
       key: "address",
       editable: true,
-      width: "22%",
+      width: "20%",
     },
     {
       title: "Gender",
@@ -203,15 +207,19 @@ function Customers() {
       editable: true,
       width: "9%",
     },
-    // {
-    //   title: "Profile Picture",
-    //   dataIndex: "profilePicture",
-    //   key: "profilePicture",
-    //   editable: true,
-    //   render:profilePicture=>(
-    //   <img alt="timer"src={("/var/www/html/React Project/ecommerce/src/assets/images/"+profilePicture)}/> ),
-    //   width:"10%",
-    //   },
+    {
+      title: "Profile Picture",
+      dataIndex: "profilePicture",
+      key: "profilePicture",
+      editable: true,
+      width:"10%",
+      
+      render:profilePicture=>(
+     
+        
+        <Avatar src={<img alt={profilePicture} src={(`../../assets/images/${profilePicture}`)}/>} shape="square" size={50} /> ),
+     
+      },
     {
       title: "Action",
       dataIndex: "customerId",
@@ -493,9 +501,11 @@ function Customers() {
                   }}
                 />
               </Form>
+            
             </div>
             <br />
           </div>
+
         </div>
       </div>
     </>

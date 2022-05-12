@@ -4,7 +4,7 @@ import HeaderBstore from "../../components/HeaderBstore";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import instance from "../../components/Axios-Instance";
 import "../Customers/customers.css";
-import pic from "../../assets/images/avatar8.jpg"
+
 import {
   RiCheckLine,
   RiDeleteBin6Line,
@@ -81,7 +81,7 @@ function Customers() {
       .then((response) => {
         if (response.data.message === "User was created.") {
           message.success("Customer account created");
-          form.resetFields();
+          modalForm.resetFields();
           setRefresh(refresh + 1);
         } else {
           message.error(response.data.message);
@@ -453,6 +453,11 @@ function Customers() {
                     >
                       <Input.Password />
                     </Form.Item>
+                    
+
+
+
+
                     <Form.Item>
                       <br/>
                       <Space>

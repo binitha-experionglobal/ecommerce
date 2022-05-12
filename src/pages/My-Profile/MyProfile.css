@@ -1,6 +1,10 @@
 .cont-ed{
   padding-right: 70px;
 }
+.ant-tooltip{
+height: none;
+width:none;
+}
 .button-form-update{
     width: 355px;
     border-radius: 6px;

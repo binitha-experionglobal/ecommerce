@@ -14,7 +14,6 @@ import { EditTwoTone } from "@ant-design/icons";
 import TextField from "@mui/material/TextField";
 
 
-
 const { Option } = Select;
 function MyProfile() {
   const [form] = Form.useForm();
@@ -309,7 +308,7 @@ function MyProfile() {
                 <div className="row">
                   <div className="col-5">
                   
-                    <img className="profilepic" src={"../../assets/images/common_profile_pic.png"} />
+                    <img className="profilepic" src={profilepic} />
                   </div>
                   <div className="col-7">
                     <div className="row">

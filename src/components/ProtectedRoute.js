@@ -6,6 +6,6 @@ let auth = false;
 if(localStorage.getItem("isAuthenticated")){
 auth =true;
 }
-return auth ? <Outlet/> : <Navigate to="/" />
+return auth ? <Outlet/> : <Navigate to="/unauthorized-access" />
 }
 export default ProtectedRoute;

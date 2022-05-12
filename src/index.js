@@ -13,9 +13,10 @@ import Customers from "./pages/Customers/Customers";
 import Orders from "./pages/Orders/Orders";
 import Users from "./pages/Users/Users";
 import MyProfile from "./pages/My-Profile/MyProfile";
-import Notfound from "./pages/Not-Found/Notfound";
+import Notfound from "./pages/NotFound/Notfound";
 import Pro from "./pages/My-Profile/pro"
 import ProtectedRoute from "./components/ProtectedRoute"
+import UnAuthorized from "./pages/UnAuthorized/unAuthorized";
 
 export default function RouteApp() {
   return (
@@ -37,10 +38,14 @@ export default function RouteApp() {
         <Route path="/home/users" element={<ProtectedRoute />}>
           <Route exact path="/home/users" element={<Users />} />
         </Route>
+
+        <Route path="/unauthorized-access" element={<UnAuthorized />} />
+        
         <Route path="/home/my-profile" element={<ProtectedRoute />}>
           <Route exact path="/home/my-profile" element={<MyProfile/>} />
         </Route>
         <Route path="home/pro" element={<Pro/>}/>
+        
         <Route path="*" element={<Notfound />} />
       </Routes>
     </BrowserRouter>

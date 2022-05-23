@@ -14,6 +14,10 @@ body{
   font-family: fantasy;
   font-size: medium;
 }
+.ant-form-item-explain-error {
+  color: #ff4d4f;
+  display: none !important;
+}
 .modal{
   background-color: #ffffff;
   overflow-y: scroll;

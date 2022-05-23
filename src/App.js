@@ -9,9 +9,9 @@ import Categories from "./pages/Categories/Categories";
 import Customers from "./pages/Customers/Customers";
 import Orders from "./pages/Orders/Orders";
 import Users from "./pages/Users/Users";
-import MyProfile from "./pages/My-Profile/MyProfile";
+import MyProfile from "./pages/MyProfile/myProfile";
 import Notfound from "./pages/NotFound/Notfound";
-import Pro from "./pages/My-Profile/pro"
+import Pro from "./pages/MyProfile/pro"
 import ProtectedRoute from "./components/ProtectedRoute"
 import UnAuthorized from "./pages/UnAuthorized/unAuthorized";
 

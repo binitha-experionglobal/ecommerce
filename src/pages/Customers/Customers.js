@@ -212,13 +212,9 @@ function Customers() {
       dataIndex: "profilePicture",
       key: "profilePicture",
       editable: true,
-      width:"10%",
-      
+      width:"10%", 
       render:profilePicture=>(
-     
-        
         <Avatar src={<img alt={profilePicture} src={(`../../assets/images/${profilePicture}`)}/>} shape="square" size={50} /> ),
-     
       },
     {
       title: "Action",

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import HeaderBstore from "../../components/HeaderBstore";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import instance from "../../components/Axios-Instance";
-import "../My-Profile/MyProfile.css";
+import "./MyProfile.css";
 import { Formik } from "formik";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -15,7 +15,7 @@ import TextField from "@mui/material/TextField";
 
 
 const { Option } = Select;
-function MyProfile() {
+function Pro() {
   const [form] = Form.useForm();
   const [visible, setVisible] = React.useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -448,4 +448,4 @@ function MyProfile() {
     </>
   );
 }
-export default MyProfile;
+export default Pro;

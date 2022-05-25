@@ -145,32 +145,33 @@ console.log("inside form");
                                     htmlFor="password"
                                     className={ValidatePassword(props, "contain_2_upperCase")}
                                 >{ValidatePassword(props, "contain_2_upperCase") === "Inactive" ? <CheckCircleFilled /> : <CloseCircleFilled />}
-                                    Should contain 2 upper case
-                                </label><br/>
+                                   &nbsp; 2 Upper cases
+                                </label>
                                 <label
                                     htmlFor="password"
                                     className={ValidatePassword(props, "contain_2_lowerCase")}
                                 >{ValidatePassword(props, "contain_2_lowerCase") === "Inactive" ? <CheckCircleFilled /> : <CloseCircleFilled />}
-                                    Should contain 2 lower case
+                                     &nbsp;2 Lower cases
+                                </label>
+                                <label
+                                    htmlFor="password"
+                                    className={ValidatePassword(props, "atMost2SpecialCharacters")}
+                                >{ValidatePassword(props, "atMost2SpecialCharacters") === "Inactive" ? <CheckCircleFilled /> : <CloseCircleFilled />}
+                                     &nbsp;Atmost 2 special characters
                                 </label><br/>
                                 <label
                                     htmlFor="password"
                                     className={ValidatePassword(props, "minLength_6")}
                                 >{ValidatePassword(props, "minLength_6") === "Inactive" ? <CheckCircleFilled /> : <CloseCircleFilled />}
-                                    Should have minimum 6 characters
-                                </label><br/>
+                                     &nbsp;Minimum 6 characters
+                                </label>
                                 <label
                                     htmlFor="password"
                                     className={ValidatePassword(props, "maxLength15")}
                                 >{ValidatePassword(props, "maxLength15") === "Inactive" ? <CheckCircleFilled /> : <CloseCircleFilled />}
-                                    Should have maximum 15 characters
-                                </label><br/>
-                                <label
-                                    htmlFor="password"
-                                    className={ValidatePassword(props, "atMost2SpecialCharacters")}
-                                >{ValidatePassword(props, "atMost2SpecialCharacters") === "Inactive" ? <CheckCircleFilled /> : <CloseCircleFilled />}
-                                    Should atmost 2 special characters
+                                     &nbsp;Maximum 15 characters
                                 </label>
+                               
                             </div>
                             {/* Icon End Here */}
 

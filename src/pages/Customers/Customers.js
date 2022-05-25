@@ -506,7 +506,6 @@ function Customers() {
             </div>
             <br />
           </div>
-
         </div>
       </div>
     </>

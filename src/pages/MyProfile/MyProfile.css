@@ -1,6 +1,15 @@
 .cont-ed{
   padding-right: 70px;
 }
+
+.Active{
+    color: rgb(194, 3, 3);
+    padding-left: 8px;
+}
+.Inactive{
+    color: rgb(4, 146, 151);
+    padding-left: 8px;
+}
 .ant-tooltip{
 height: none;
 width:none;

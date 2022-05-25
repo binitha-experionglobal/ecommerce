@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import HeaderBstore from "../../components/HeaderBstore";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import instance from "../../components/Axios-Instance";
-import "./MyProfile.css";
+import "./myProfile.css";
 import { Formik } from "formik";
 import { useFormik } from "formik";
 import * as Yup from "yup";

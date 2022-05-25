@@ -1,9 +1,56 @@
 .cont-ed{
   padding-right: 70px;
 }
+.ant-btn-dashed {
+    border-style: none !important;
+    background-color: #eaeaea !important;
+    width: 200px;
+    padding-top: 1px;
+    margin-left: 5px;
+    height: 39px;
+    color: #000000 !important;
+    border-radius: 7px !important;
+    border-color: #05283a !important;
+    font-family: fantasy !important;
+  font-size: medium !important;
+  text-transform: none !important;
+}
+.ant-btn-dashed[disabled]{
+    background-color: #eaeaea !important;
+    width: 200px;
+    padding-top: 1px;
+    margin-left: 5px;
+    height: 39px;
+    color: #000000 !important;
+    border-radius: 7px !important;
+    border-color: #05283a !important;
+    font-family: fantasy !important;
+  font-size: medium !important;
+  text-transform: none !important;
+}
 
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+    background-color: #1890ff !important;
+    width: 200px;
+    color: #ffffff !important;
+    border-radius: 7px !important;
+    border-color: #05283a !important;
+    font-family: fantasy !important;
+  font-size: medium !important;
+  text-transform: none !important;
+
+}
+/* .button-mui{
+    width: 355px;
+    border-radius: 6px;
+    color: #05283a;
+} */
 .Active{
-    color: rgb(194, 3, 3);
+    color: crimson !important;
+    padding-left: 8px;
+}
+.ant-form label {
+   
     padding-left: 8px;
 }
 .Inactive{
@@ -25,7 +72,7 @@ width:none;
 
 }
 .ant-modal-body{
-    margin-left: 50px;
+    margin-left: 40px;
 }
 .table-m{
     margin-left: 1000px;

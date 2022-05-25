@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import HeaderBstore from "../../components/HeaderBstore";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import instance from "../../components/Axios-Instance";
-import "./MyProfile.css";
+import "./myProfile.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AiOutlineUser } from "react-icons/ai";
@@ -13,6 +13,8 @@ import { ValidatePassword } from "./validatePassword";
 import { yupToFormErrors } from "./yupToFormErrors";
 import { Form, Input, Button } from "antd";
 import { Formik, validateYupSchema } from "formik";
+
+import ChangePassword from "./changePassword";
 
 import Buttons from "@mui/material/Button";
 import { ChangePasswordForm } from "./changePasswordForm";
@@ -180,11 +182,23 @@ function MyProfile() {
                 {/* <Button className="button-m" onClick={showModal}>
                   Change Password
                 </Button> */}
-                <Button
+
+                {/* <Button
                 className="button-m"
                   onClick={() => {
                     setVisible(true);
                     console.log("set to true");
+                  }}
+                >
+                  Change Passwordss
+                </Button> */}
+
+                <Button
+                className="button-m"
+                
+                  onClick={() => {
+                    setVisible(true);
+                    <ChangePassword/>
                   }}
                 >
                   Change Password

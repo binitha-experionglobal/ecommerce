@@ -1,8 +1,8 @@
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/sidebar";
 import React, { useState, useEffect } from "react";
-import HeaderBstore from "../../components/HeaderBstore";
-import "../Home/Home.css";
-import instance from "../../components/Axios-Instance";
+import HeaderBstore from "../../components/headerBstore";
+import "../Home/home.css";
+import instance from "../../components/axiosInstance";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { AiOutlineShoppingCart, AiOutlineUsergroupAdd } from "react-icons/ai";

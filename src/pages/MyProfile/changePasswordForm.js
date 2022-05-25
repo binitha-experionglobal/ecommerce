@@ -212,7 +212,7 @@ import {
 } from "./validatePassword";
 
 import {message} from "antd";
-import instance from "../../components/Axios-Instance";
+import instance from "../../components/axiosInstance";
 import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
 // import "./changePassword.css";
 import Button from "@mui/material/Button";

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 
 import {message} from "antd";
-import instance from "../../components/Axios-Instance";
+import instance from "../../components/axiosInstance";
 import { ChangePasswordForm } from "./changePasswordForm";
 import axios from "axios";
 

@@ -1,18 +1,18 @@
 import React from "react";
 import "./index.css";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
+import Home from "./pages/Home/home";
+import Login from "./pages/Login/login";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
 import "./styles.css";
-import Categories from "./pages/Categories/Categories";
-import Customers from "./pages/Customers/Customers";
-import Orders from "./pages/Orders/Orders";
+import Categories from "./pages/Categories/categories";
+import Customers from "./pages/Customers/customers";
+import Orders from "./pages/Orders/orders";
 import Users from "./pages/Users/Users";
 import MyProfile from "./pages/MyProfile/myProfile";
-import Notfound from "./pages/NotFound/Notfound";
+import Notfound from "./pages/NotFound/notfound";
 import Pro from "./pages/MyProfile/pro"
-import ProtectedRoute from "./components/ProtectedRoute"
+import ProtectedRoute from "./components/protectedRoute"
 import UnAuthorized from "./pages/UnAuthorized/unAuthorized";
 
 function App() {

@@ -1,8 +1,8 @@
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/sidebar";
 import React, { useState, useEffect } from "react";
-import HeaderBstore from "../../components/HeaderBstore";
+import HeaderBstore from "../../components/headerBstore";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import instance from "../../components/Axios-Instance";
+import instance from "../../components/axiosInstance";
 import "../Users/users.css"
 import {
   RiCheckLine,
